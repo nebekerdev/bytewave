@@ -8,3 +8,85 @@ body {
     margin: 70px auto;
     text-align: center;
 }
+
+#appContainer {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    background-color: "black";
+
+
+}
+#centerSection {
+  content: "g";
+  display: flex;
+  flex-direction: row;
+  height: 70%;
+  width: 100vw;
+  background-color: "red";
+
+}
+#topSection {
+  content: "g";
+  height: 15%;
+  background-color: "blue";
+
+
+}
+#bottomSection {
+  content: "g";
+  height: 15%;
+  background-color: "yellow";
+
+
+}
+
+#controls {
+  background-color: "purple";
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+#baseSoundControls {
+  background-color: "palegoldenrod";
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+}
+#applyFX {
+  background-color: "brown";
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+}
+
+#timesteps {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: "aqua";
+}
+
+#timeStepDisplayGraph
+{
+  display: flex;
+  flex-direction: row;
+  background-color: "darkorange";
+  height: 50%;
+}
+#timeStepUniversalControl
+{
+  background-color: "hotpink";
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas: "timeStepLeft timeStepCenter timeStepRight";
+  height: 50%;
+}
+#timeStepControlNode
+{
+  background-color: "black";
+  grid-area: "timeStepCenter";
+  height: 100%;
+}

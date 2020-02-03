@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default class App extends React.Component {
     dummy = () => {
         // Just to test arrow functions
@@ -7,12 +8,55 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className={'hello'}>
-                <h2>Hello Electrate</h2>
-                <img src="./assets/logo.png" />
-                <h4>A basic Electron + React.js template</h4>
-                <h4>Have Fun!</h4>
+            <>
+            <div id="appContainer">
+
+            <div id="topSection">
             </div>
+
+            <div id="centerSection">
+
+            <div id="controls">
+
+            <div id="baseSoundControls">
+            Hey Hey Hey
+            </div>
+
+            <div id="applyFX">
+            Hi Hi Hi
+            </div>
+
+            </div>
+
+            <div id="timesteps">
+
+            <div id="timeStepDisplayGraph">
+            Hey
+            </div>
+
+            <div id="timeStepUniversalControl">
+            <div id="timeStepLeft">
+            </div>
+
+
+            <div id="timeStepControlNode">
+            Hi
+            </div>
+            </div>
+
+            <div id="timeStepRight">
+            </div>
+
+
+            </div>
+            </div>
+
+
+            <div id="bottomSection">
+
+            </div>
+            </div>
+            </>
         );
     }
 }

@@ -14,7 +14,9 @@ async function myAsyncfunc () {
     })
 }
 
+const el = <h1>Testing This Shit</h1>;
 window.onload = () => {
     ReactDOM.render(<App />, document.getElementById('app'));
+    ReactDOM.render(el, document.getElementById('testing'));
     asyncTest();
 };
