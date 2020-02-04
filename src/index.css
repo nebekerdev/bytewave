@@ -48,7 +48,7 @@ body {
   flex-direction: column;
   width: 50%;
 }
-#baseSoundControls {
+#basicSoundControlStyles {
   background-color: "palegoldenrod";
   display: flex;
   flex-direction: row;
@@ -68,7 +68,7 @@ body {
   background-color: "aqua";
 }
 
-#timeStepDisplayGraph
+#timeStepDisplayGraphStyles
 {
   display: flex;
   flex-direction: row;
@@ -81,12 +81,18 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 100%;
-  grid-template-areas: "timeStepLeft timeStepCenter timeStepRight";
+  grid-template-areas: "spacingBlock timeStepCenter spacingBlock";
   height: 50%;
 }
-#timeStepControlNode
+#centerBlock
 {
   background-color: "black";
   grid-area: "timeStepCenter";
+  height: 100%;
+}
+#nullstyles
+{
+  background-color: "darkorange";
+  grid-area: "spacingBlock";
   height: 100%;
 }

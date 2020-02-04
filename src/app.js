@@ -1,6 +1,60 @@
 import React from 'react';
 
+class TimeStepDisplayGraph extends React.Component {
 
+  render () {
+      return <div id={ this.props.id }>Heyyyyy</div>;
+    }
+  }
+
+class TimeStepScaler extends React.Component {
+  render () {
+      return <div id = {this.props.id}>
+             <TimeStepSpacingBlock id="nullstyles"/>
+             <TimeStepControlNode id="centerBlock">
+             <TimeStepSpacingBlock id="nullstyles"/>
+             </div>;
+  }
+}
+
+class TimeStepSpacingBlock extends React.Component {
+  render () {
+      return <div id= { this.props.id }></div>;
+  }
+}
+
+class TimeStepControlNode extends React.Component {
+  render () {
+      return <div id={this.props.id}></div>;
+  }
+}
+
+class SoundControlPanel extends React.Component {
+    render () {
+      return 0;
+    }
+
+}
+
+class BasicSoundControl extends React.Component {
+    render () {
+      return <div id={ this.props.id }> Hey Hey Hey </div>;
+    }
+}
+
+class BasicFXControl extends React.Component {
+    render () {
+      return <div id={ this.props.id }> Hey Hey Hey </div>;
+    }
+}
+
+ class TimeStepPanel extends React.Component {
+
+      render() {
+        return <div id = { this.props.id } ></div>;
+      }
+
+}
 export default class App extends React.Component {
     dummy = () => {
         // Just to test arrow functions
@@ -12,50 +66,33 @@ export default class App extends React.Component {
             <div id="appContainer">
 
             <div id="topSection">
-            </div>
+            </div> {/* CLOSE TOP SECTION */}
 
             <div id="centerSection">
 
             <div id="controls">
 
-            <div id="baseSoundControls">
-            Hey Hey Hey
-            </div>
+            <BasicSoundControl id="basicSoundControlStyles"/>
 
-            <div id="applyFX">
-            Hi Hi Hi
-            </div>
+            <BasicFXControl id="applyFX"/>
 
-            </div>
+            </div> {/* CLOSE CONTROL SECTION */}
 
             <div id="timesteps">
 
-            <div id="timeStepDisplayGraph">
-            Hey
-            </div>
+            <TimeStepDisplayGraph id="timeStepDisplayGraphStyles"/>
 
-            <div id="timeStepUniversalControl">
-            <div id="timeStepLeft">
-            </div>
+            <TimeStepScaler id="timeStepUniversalControl"/>
 
+            </div> {/* CLOSE TIMESTEPS */}
 
-            <div id="timeStepControlNode">
-            Hi
-            </div>
-            </div>
-
-            <div id="timeStepRight">
-            </div>
-
-
-            </div>
-            </div>
+            </div> {/* CLOSE CENTER SECTION */}
 
 
             <div id="bottomSection">
 
             </div>
-            </div>
+            </div> {/* CLOSE APP SECTION */}
             </>
         );
     }
