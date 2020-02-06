@@ -1,98 +1,135 @@
-body {
+body
+{
     margin: 0px;
 }
 
-.hello {
+.hello
+{
     font-family: "Century Gothic";
     width: 500px;
     margin: 70px auto;
     text-align: center;
 }
 
-#appContainer {
+#appContainer
+{
     display: flex;
     height: 100vh;
     width: 100vw;
     flex-direction: column;
-    background-color: "black";
+
 
 
 }
-#centerSection {
+#centerSection
+{
   content: "g";
   display: flex;
   flex-direction: row;
   height: 70%;
   width: 100vw;
-  background-color: "red";
+
 
 }
-#topSection {
+#topSection
+{
   content: "g";
   height: 15%;
-  background-color: "blue";
+
 
 
 }
-#bottomSection {
+#bottomSection
+{
   content: "g";
   height: 15%;
-  background-color: "yellow";
+
 
 
 }
 
-#controls {
-  background-color: "purple";
+#controls
+{
+  
   display: flex;
   flex-direction: column;
   width: 50%;
 }
-#basicSoundControlStyles {
-  background-color: "palegoldenrod";
+#basicSoundControlStyles
+{
+
   display: flex;
   flex-direction: row;
   height: 50%;
 }
-#applyFX {
-  background-color: "brown";
+#applyFXStyles
+{
+
   display: flex;
   flex-direction: row;
   height: 50%;
 }
 
-#timesteps {
+#timesteps
+{
   width: 50%;
   display: flex;
   flex-direction: column;
-  background-color: "aqua";
+
 }
 
 #timeStepDisplayGraphStyles
 {
   display: flex;
   flex-direction: row;
-  background-color: "darkorange";
+  align-content: space-around;
+  justify-content: space-between;
   height: 50%;
+  grid-column-gap: 5px;
 }
-#timeStepUniversalControl
+#timeStepUniversalControlStyles
 {
-  background-color: "hotpink";
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 100%;
   grid-template-areas: "spacingBlock timeStepCenter spacingBlock";
   height: 50%;
 }
-#centerBlock
+#centerBlockStyles
 {
-  background-color: "black";
+
   grid-area: "timeStepCenter";
   height: 100%;
 }
 #nullstyles
 {
-  background-color: "darkorange";
+
   grid-area: "spacingBlock";
   height: 100%;
+}
+.graphNodeStyles
+{
+  height: 100%;
+  background-color: "lightcoral";
+  width: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 8px solid coral;
+  z-index: 12;
+
+
+}
+
+.graphNodeStyles:hover
+{
+  border-color: deepskyblue;
+  background-color: aquamarine;
+}
+
+#circleLineButton
+{
+  margin-top: 20%;
+  width: 23%;
+  height: 40%;
 }
