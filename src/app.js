@@ -1,4 +1,5 @@
 import React from 'react';
+import Step from './audioobjects.js'
 
 
 class TimeStepDisplayGraph extends React.Component {
@@ -93,6 +94,26 @@ class BasicFXControl extends React.Component {
       }
 
 }
+class Controls extends React.Component
+{
+  render() {
+    return <div id={this.props.id}><BasicSoundControl id="basicSoundControlStyles"/>
+            <BasicFXControl id="applyFXStyles"/> </div>
+  }
+}
+class TimeSteps extends React.Component
+{
+      render()
+      {
+        <div id= { this.props.id }>
+        <TimeStepDisplayGraph id="timeStepDisplayGraphStyles"/>
+
+        <TimeStepScaler id="timeStepUniversalControlStyles"/>
+        </div>
+      }
+}
+
+
 export default class App extends React.Component {
     dummy = () => {
         // Just to test arrow functions
@@ -108,21 +129,8 @@ export default class App extends React.Component {
 
             <div id="centerSection">
 
-            <div id="controls">
-
-            <BasicSoundControl id="basicSoundControlStyles"/>
-
-            <BasicFXControl id="applyFXStyles"/>
-
-            </div> {/* CLOSE CONTROL SECTION */}
-
-            <div id="timesteps">
-
-            <TimeStepDisplayGraph id="timeStepDisplayGraphStyles"/>
-
-            <TimeStepScaler id="timeStepUniversalControlStyles"/>
-
-            </div> {/* CLOSE TIMESTEPS */}
+            <Controls id="controls"/>
+            <TimeSteps id="timesteps"/>
 
             </div> {/* CLOSE CENTER SECTION */}
 
