@@ -28,3 +28,11 @@ and creating the oscillators. About 30% done.
 
 Third Phase: Add cute UI elements. - UP NEXT
 
+CURRENT ISSUES/ROADBLOCKS:
+Before continuing, I need to determine how to optimally
+associate a div in the TimeStep Graph section,
+which controls timing for a step,
+with an input row in the controls section,
+which gives the user access to oscillators, pitch, and volume
+for the step. Currently both are represented as divs, but
+they need to be associated together.

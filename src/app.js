@@ -1,17 +1,24 @@
 import React from 'react';
 import Step from './audioobjects.js'
 
+function createGraphNode(uniqueIdentifier, communicateWithParentFunction) {
+  return <TimeStepDisplayGraphNode class="graphNodeStyles" communicate = {this.props.communicateWithParentFunction} key={this.props.uniqueIdentifier}/>
+}
 
 class TimeStepDisplayGraph extends React.Component {
+  constructor(props)
+  {
+    super(props);
+  }
+  communicate ()
+  {
 
+  }
   render () {
+      const numberOfNodes = new Array(this.props.numberOfNodes);
       return <div id={ this.props.id }>
-             <TimeStepDisplayGraphNode class="graphNodeStyles"/>
-             <TimeStepDisplayGraphNode class="graphNodeStyles"/>
-             <TimeStepDisplayGraphNode class="graphNodeStyles"/>
-             <TimeStepDisplayGraphNode class="graphNodeStyles"/>
-             <TimeStepDisplayGraphNode class="graphNodeStyles"/>
-             <TimeStepDisplayGraphNode class="graphNodeStyles"/>
+              {numberOfNodes.map((ea, i) => {
+                return createGraphNode(i, this.props.communicate) })};
              </div>;
     }
   }
@@ -32,7 +39,7 @@ class TimeStepDisplayGraphNode extends React.Component
 
         render() {
 
-            return <div class = { this.props.class } ref = { this.divWidth } onDrag = {(e) => { this.interactionRequest(e)} }>  </div>;
+            return <div class = { this.props.class } ref = { this.divWidth } onClick = {this.props.communicate} onDrag = {(e) => { this.interactionRequest(e)} }>  </div>;
 }
 }
 class TimeStepScaler extends React.Component {
@@ -112,7 +119,11 @@ class TimeSteps extends React.Component
         </div>
       }
 }
-
+class ControlsAndTimeStepCommunicator {
+  render() {
+    return <div><Controls id="controls"><TimeSteps id="timesteps"></div>
+  }
+}
 
 export default class App extends React.Component {
     dummy = () => {
@@ -127,12 +138,7 @@ export default class App extends React.Component {
             <div id="topSection">
             </div> {/* CLOSE TOP SECTION */}
 
-            <div id="centerSection">
-
-            <Controls id="controls"/>
-            <TimeSteps id="timesteps"/>
-
-            </div> {/* CLOSE CENTER SECTION */}
+            <ControlsAmdTimeStepCommunicator"/>
 
 
             <div id="bottomSection">

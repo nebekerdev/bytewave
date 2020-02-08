@@ -1,7 +1,7 @@
 {
-  "name": "electrate",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "Bytewave",
+  "version": "0.1.0",
+  "description": "A simple sound effect generator",
   "main": "app/main.js",
   "scripts": {
     "postinstall": "install-app-deps",
@@ -12,13 +12,13 @@
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Sound Effects",
+    "Audio",
+    "Game Assets",
+    "Music",
+    "SoundFX webapp"
   ],
-  "author": "GitHub",
+  "author": "James Nebeker",
   "license": "CC0-1.0",
   "devDependencies": {
     "@babel/core": "^7.8.4",
