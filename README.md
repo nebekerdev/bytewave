@@ -1,4 +1,4 @@
-# README#
+# README
 This app is under current development
 -------------------------------------
 
