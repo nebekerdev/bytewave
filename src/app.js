@@ -10,10 +10,7 @@ class TimeStepDisplayGraph extends React.Component {
   {
     super(props);
   }
-  communicate ()
-  {
 
-  }
   render () {
       const numberOfNodes = new Array(this.props.numberOfNodes);
       return <div id={ this.props.id }>
@@ -83,8 +80,16 @@ class SoundControlPanel extends React.Component {
 }
 
 class BasicSoundControl extends React.Component {
+    constructor()
+    {
+      super(props);
+    }
+
     render () {
-      return <div id={ this.props.id }> Hey Hey Hey </div>;
+      numberOfOscillators = new Array(this.props.numberOfOscillators);
+      return <div id={ this.props.id }>{numberOfOscillators.map((ea, i)=>
+             {return <OscillatorControl id={i} communicationID={"c"+i}
+              audiocontext={this.props.audiocontext}/>})}</div>;
     }
 }
 
@@ -101,27 +106,83 @@ class BasicFXControl extends React.Component {
       }
 
 }
+class OscillatorControl extends React.Component
+{
+  constructor ()
+  {
+    this.setState(webAudioOscillator: this.props.audiocontext.createOscillator());
+    this.communicate = this.communicate.bind(this);
+
+
+  }
+
+  communicate()
+  {
+
+  }
+  setWaveform(oscType)
+  {
+    this.state.webAudioOscillator.type = oscType;
+  }
+
+  setPitch(frequency)
+  {
+    this.state.webAudioOscillator.frequency.setValueAtTime(frequency, this.props.audiocontext.currentTime);
+  }
+
+  render()
+  {
+      return <div id={this.props.id}><input type="slider" onChange={this.communicate(this.props.communicationID)}/></div>
+  }
+
+
+}
 class Controls extends React.Component
 {
   render() {
-    return <div id={this.props.id}><BasicSoundControl id="basicSoundControlStyles"/>
-            <BasicFXControl id="applyFXStyles"/> </div>
+    return <div id={this.props.id}><BasicSoundControl id="basicSoundControlStyles" audiocontext={this.props.audiocontext}/>
+            <BasicFXControl id="applyFXStyles" audiocontext={this.props.audiocontext}/> </div>
   }
 }
 class TimeSteps extends React.Component
 {
+
+
       render()
       {
         <div id= { this.props.id }>
-        <TimeStepDisplayGraph id="timeStepDisplayGraphStyles"/>
+        <TimeStepDisplayGraph id="timeStepDisplayGraphStyles"
+        communicate={this.props.communicateBetweenSiblings}/>
 
         <TimeStepScaler id="timeStepUniversalControlStyles"/>
         </div>
       }
 }
 class ControlsAndTimeStepCommunicator {
+
+  constructor()
+  {
+    super(props);
+    this.setState(audioContext: new AudioContext());
+  }
+
+  communicateBetweenSiblings () {
+
+  }
+  sendMsg()
+  {
+
+  }
+  receiveMsg()
+  {
+
+  }
   render() {
-    return <div><Controls id="controls"><TimeSteps id="timesteps"></div>
+    return <div><Controls id="controls" numberOfOscillators =
+                {this.props.numberOfOscillators} audiocontext={audioContext}>
+                <TimeSteps id="timesteps" communicateBetweenSiblings=
+                {this.communicateBetweenSiblings}>
+           </div>
   }
 }
 
@@ -138,7 +199,7 @@ export default class App extends React.Component {
             <div id="topSection">
             </div> {/* CLOSE TOP SECTION */}
 
-            <ControlsAmdTimeStepCommunicator"/>
+            <ControlsAndTimeStepCommunicator numberOfOscillators="6"/>
 
 
             <div id="bottomSection">
