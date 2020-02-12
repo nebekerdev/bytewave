@@ -1,5 +1,5 @@
 import React from 'react';
-import Step from './audioobjects.js'
+
 
 /*  ##### TIMESTEP SECTION COMPONENTS
 this section contains components currently
@@ -15,15 +15,15 @@ class TimeSteps extends React.Component
 {
 
 
-      render()
-      {
-        <div id= { this.props.id }>
-        <TimeStepDisplayGraph id="timeStepDisplayGraphStyles"
-        communicate={this.props.communicateBetweenSiblings}/>
+  render()
+  {
+    return <div id= { this.props.id }>
+            <TimeStepDisplayGraph id= "timeStepDisplayGraphStyles"
+            communicate= { this.props.communicateBetweenSiblings }/>
 
-        <TimeStepScaler id="timeStepUniversalControlStyles"/>
-        </div>
-      }
+            <TimeStepScaler id= "timeStepUniversalControlStyles" />
+            </div>;
+  }
 }
 
 
@@ -32,11 +32,11 @@ class TimeSteps extends React.Component
   the graphnode to see its associated oscillator and fx,
   or drag the graph node to increase or decrease the time it plays for
 */
-function createGraphNode(uniqueIdentifier, communicateWithParentFunction)
+function createGraphNode( uniqueIdentifier, communicateWithParentFunction )
 {
-  return <TimeStepDisplayGraphNode class="graphNodeStyles" communicate =
-  {this.props.communicateWithParentFunction} communicationID=
-  {this.props.uniqueIdentifier}/>
+  return <TimeStepDisplayGraphNode class= "graphNodeStyles" communicate =
+          { communicateWithParentFunction } communicationID=
+          { uniqueIdentifier }/>
 }
 
 // The display  graph is the container component that houses all of the graph nodes
@@ -53,153 +53,166 @@ class TimeStepDisplayGraph extends React.Component
       // and associates each with a unique ID that is tied to the actual oscillator
       // that it represents
 
-      const numberOfNodes = new Array(this.props.numberOfNodes);
+      const numberOfNodes = new Array( this.props.numberOfNodes );
       return <div id={ this.props.id }>
-              {numberOfNodes.map((ea, i) => {
-                return createGraphNode(i, this.props.communicate) })};
+              {numberOfNodes.map( ( ea, i ) => {
+                return createGraphNode( i, this.props.communicate ) })};
              </div>;
-    }
   }
+}
 class TimeStepDisplayGraphNode extends React.Component
 {
 
-      constructor(props)
-      {
-        super(props);
-        this.div = React.createRef(); // necessary to update the div width on screen
-        this.interactionRequest = this.interactionRequest.bind(this);
-        this.activateTimeStep = this.activateTimeStep.bind(this);
-        var decrementedWidth = 0;
+  constructor( props )
+  {
+    super( props );
+    this.div = React.createRef(); // necessary to update the div width on screen
+    this.interactionRequest = this.interactionRequest.bind( this );
+    this.activateTimeStep = this.activateTimeStep.bind( this );
+    var decrementedWidth = 0;
 
-      }
+  }
       // When the user drags the component, we change the divs width correspondingly
       // and the width is further associated with a percentage of the total time
       // for the clip
-      interactionRequest(e)
-      {
-        decrementedWidth = e.clientX - 2;
-        this.div.current.style.width = `${numba}px`;
-      }
+  interactionRequest(e)
+  {
+    decrementedWidth = e.clientX - 2;
+    this.div.current.style.width = `${numba}px`;
+  }
 
       // Used to display a visual indication to the user that he is viewing the
       // sound controls for a specific timestep
-      activateTimeStep()
-      {
-        this.div.current.style = {this.props.class+"clicked"};
-        this.props.communicate(this.props.communicationID, decrementedWidth);
+  activateTimeStep()
+  {
+    this.div.current.className = this.props.class+"clicked";
+    this.props.communicate( this.props.communicationID, decrementedWidth );
 
-      }
+  }
 
-        render() {
+  render()
+  {
 
-            return <div class = { this.props.class } ref = { this.divWidth }
-                    onClick = {this.activateTimeStep} onDrag =
-                    {(e) => { this.interactionRequest(e)} }>
-                   </div>;
-}
+    return <div className = { this.props.class } ref = { this.divWidth }
+                onClick = { this.activateTimeStep } onDrag =
+                {(e) => { this.interactionRequest( e ) } }>
+           </div>;
+  }
 }
 
 // This is the component which contains the UI element that scales the timesteps according
 // to an overall clip length
-class TimeStepScaler extends React.Component {
-  render () {
-      return <div id = {this.props.id}>
-             <TimeStepSpacingBlock id="nullstyles"/> // Used to center the scaling UI element
-                                                    // is not visible on screen
-             <TimeStepControlNode id="centerBlockStyles"/>
-             <TimeStepSpacingBlock id="nullstyles"/> // Same as above
-             </div>;
+class TimeStepScaler extends React.Component
+{
+  render ()
+  {
+    return <div id = { this.props.id }>
+           <TimeStepSpacingBlock id= "nullstyles" /> {/* Used to center the scaling UI element
+                                                      is not visible on screen*/}
+           <TimeStepControlNode id= "centerBlockStyles" />
+           <TimeStepSpacingBlock id= "nullstyles" /> {/* Same as above */ }
+           </div>;
   }
 }
 
-class TimeStepSpacingBlock extends React.Component {
-  render () {
-      return <div id= { this.props.id }></div>;
+class TimeStepSpacingBlock extends React.Component
+{
+  render ()
+  {
+    return <div id= { this.props.id }></div>;
   }
 }
-// This is the UI component that allows the user to scale the total clip length
-class TimeStepControlNode extends React.Component {
-  render () {
-      return <div id={this.props.id}>
-             <CircleLineButton/>
-             <CircleLineButton/>
-             <CircleLineButton isChecked="checked" /> // One of three clip lengths must be set by default
-             </div>;
+{/* // This is the UI component that allows the user to scale the total clip length */ }
+class TimeStepControlNode extends React.Component
+{
+  render ()
+  {
+    return <div id= { this.props.id } >
+            <CircleLineButton/>
+            <CircleLineButton/>
+            <CircleLineButton isChecked= "checked" /> {/* One of three clip lengths must be set by default*/}
+           </div>;
   }
 }
-class CircleLineButton extends React.Component {
-  render () {
-              if (this.props.isChecked=="checked")
-              return <input type="radio" id="circleLineButton" checked />;
-              else
-              return <input type="radio" id="circleLineButton" />;
+class CircleLineButton extends React.Component
+{
+  render ()
+  {
+    if (this.props.isChecked== "checked" )
+      return <input type= "radio" id= "circleLineButton" defaultChecked />;
+    else
+      return <input type= "radio" id= "circleLineButton" />;
   }
 }
 
-/* ##### CONTROLS SECTION
+{/* ##### CONTROLS SECTION
 This section appears on the left side of the application and contains
 all of the UI components responsible for controlling the oscillators and fx
 associated with each time step
-*/
+*/}
 
-class BasicSoundControl extends React.Component {
-    constructor()
+class BasicSoundControl extends React.Component
+{
+  constructor( props )
+  {
+    super( props );
+
+  }
+  respondtoTimeStepGraphNode(timeStepWidth)
+  {
+    let oscillatorsList = React.Children.toArray( props.children );
+
+    if ( oscillatorsList === 1 )
     {
-      super(props);
-      this.respondToTimeStepGraphNode = this.respondToTimeStepGraphNode.bind(this);
+      {  /* TO DO */}
     }
-    respondtoTimeStepGraphNode(timeStepWidth)
-    {
-      let oscillatorsList = React.Children.toArray(props.children);
-
-
-      if (oscillatorsList === 1)
-      {
-        // TO DO
-      }
-    }
-    render () {
-      // Create n oscillators depending ona rgument
-      numberOfOscillators = new Array(this.props.numberOfOscillators);
-      return <div id={ this.props.id }>{numberOfOscillators.map((ea, i)=>
-              {return <OscillatorControl id={i} communicationID={"c"+i}
-                audiocontext={this.props.audiocontext}/>})}
-             </div>;
-    }
+  }
+  render ()
+  {
+      {/* Create n oscillators depending on argument*/}
+    var numberOfOscillators = new Array( this.props.numberOfOscillators );
+    return <div id={ this.props.id }>{ numberOfOscillators.map( (ea, i) =>
+            {return <OscillatorControl id={i} key= { "c"+i }
+              audiocontext= { this.props.audiocontext } />})}
+           </div>;
+  }
 }
 
-// This section houses our reverb and delay, but is not finished
-class BasicFXControl extends React.Component {
-    render () {
-      return <div id={ this.props.id }> Hey Hey Hey </div>;
-    }
+{/* This section houses our reverb and delay, but is not finished*/}
+class BasicFXControl extends React.Component
+{
+  render ()
+  {
+    return <div id= { this.props.id }> Hey Hey Hey </div>;
+  }
 }
 
 
-// This component contains the actual oscillator and the UI component
-// associated with controlling it. It contains methods for updating the oscillator.
+{/* // This component contains the actual oscillator and the UI component
+ // associated with controlling it. It contains methods for updating the oscillator.*/}
 class OscillatorControl extends React.Component
 {
-  constructor ()
+  constructor ( props )
   {
-    this.setState(webAudioOscillator: this.props.audiocontext.createOscillator());
+    super(props);
+    this.state = ( { webAudioOscillator: this.props.audiocontext.createOscillator() } );
     this.state.webAudioOscillator.type = "sine";
-    this.communicateWithSelf = this.communicateWithSelf.bind(this);
-    inputField = <input type="range" min="0" max="3" step="1"
-                  onChange={this.communicateWithSelf(this.props.communicationID,
-                  inputField.value}/>;
+    this.communicateWithSelf = this.communicateWithSelf.bind( this );
+    const inputField = <input type="range" min="0" max="3" step="1"
+                  onChange= { this.communicateWithSelf( this.props.communicationID) } />;
+
 
   }
 
   communicateWithSelf(id, message)
   {
-    setWaveform(message);
+
   }
 
 
-  setWaveform(oscType)
+  setWaveform( oscType )
   {
-    switch (oscType)
+    switch ( oscType )
     {
       case 0: this.state.webAudioOscillator.type = "sine";
               break;
@@ -212,14 +225,15 @@ class OscillatorControl extends React.Component
 
   }
 
-  setPitch(frequency)
+  setPitch( frequency )
   {
-    this.state.webAudioOscillator.frequency.setValueAtTime(frequency, this.props.audiocontext.currentTime);
+    this.state.webAudioOscillator.frequency.setValueAtTime( frequency,
+                                                            this.props.audiocontext.currentTime);
   }
 
   render()
   {
-      return <div id={this.props.id}>{inputField}</div>
+    return <div id={this.props.id}> {this.inputField} </div>
   }
 
 
@@ -227,23 +241,30 @@ class OscillatorControl extends React.Component
 // This is a container component that houses both our oscillators and fx
 class Controls extends React.Component
 {
+  constructor( props )
+  {
+    super( props );
+  }
   render() {
-    return <div id={this.props.id}><BasicSoundControl id="basicSoundControlStyles" audiocontext={this.props.audiocontext}/>
-            <BasicFXControl id="applyFXStyles" audiocontext={this.props.audiocontext}/> </div>
+    return <div id={ this.props.id }><BasicSoundControl id= "basicSoundControlStyles"
+                audiocontext= { this.props.audiocontext } numberOfOscillators={ this.props.numberOfOscillators }/>
+            <BasicFXControl id= "applyFXStyles" audiocontext= { this.props.audiocontext }/> </div>
   }
 }
 
 
 // This is the top-most parent component which houses our controls section and timestep SECTION
-class ControlsAndTimeStepCommunicator {
+class ControlsAndTimeStepCommunicator extends React.Component
+{
 
-  constructor()
+  constructor( props )
   {
-    super(props);
-    this.setState(audioContext: new AudioContext());
+    super( props );
+    this.state = ( { audioContext: new AudioContext() } );
   }
 
-  communicateBetweenSiblings (communicationID, message) {
+  communicateBetweenSiblings ( communicationID, message )
+  {
 
   }
   sendMsg()
@@ -254,21 +275,25 @@ class ControlsAndTimeStepCommunicator {
   {
 
   }
-  render() {
-    return <div><Controls id="controls" numberOfOscillators =
-                {this.props.numberOfOscillators} audiocontext={audioContext}>
+  render()
+  {
+    return <div><Controls id= "controls" numberOfOscillators =
+                { this.props.numberOfOscillators } audiocontext= { this.state.audioContext } />
                 <TimeSteps id="timesteps" communicateBetweenSiblings=
-                {this.communicateBetweenSiblings}>
-           </div>
+                { this.communicateBetweenSiblings } />
+           </div>;
   }
 }
 
-export default class App extends React.Component {
-    dummy = () => {
+export default class App extends React.Component
+{
+    dummy = () =>
+    {
         // Just to test arrow functions
     }
 
-    render() {
+    render()
+    {
         return (
             <>
             <div id="appContainer">
@@ -286,4 +311,4 @@ export default class App extends React.Component {
             </>
         );
     }
-}
+};
